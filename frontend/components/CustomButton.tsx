@@ -8,14 +8,17 @@ const CustomButton = ({
   onClick,
   type = "button",
   icon,
+  disabled,
 }: CustomButtonProps) => {
   return (
     <button
+      disabled={disabled}
       type={type}
-      className={`font-bold hover:text-cyan-500 flex items-center cursor-pointer px-4 gap-1 justify-center ${className}`}
+      className={`font-bold  flex items-center px-4 gap-1 justify-center ${className} 
+        ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:text-cyan-500"}`}
       onClick={onClick}
     >
-      {icon && <Icon icon={icon} className="text-lg" />}
+      {icon && <Icon icon={icon} />}
       {title}
     </button>
   );

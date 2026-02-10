@@ -1,4 +1,4 @@
-export type TaskStatus = "Completed" | "Ongoing" | "Overdue";
+export type TaskStatus = "Completed" | "Ongoing" | "Overdue" | "Open";
 
 export const STAT_CARD_CONFIG = [
   {
@@ -30,9 +30,10 @@ export interface Auth {
 export interface CustomButtonProps {
   title: string;
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: "submit" | "button";
   icon?: string;
+  disabled?: boolean;
 }
 
 export interface AuthFormProps {
@@ -55,6 +56,8 @@ export interface Task {
 
 export interface TaskTableProps {
   tasks: Task[] | null;
+  userId: string;
+  users: User[];
 }
 
 export interface User {
@@ -70,4 +73,9 @@ export interface SearchBarProps {
   placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface StatusBadgeProps {
+  status: string;
+  onChange: (value: TaskStatus) => void;
 }

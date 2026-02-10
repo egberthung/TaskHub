@@ -3,8 +3,8 @@ import TaskStatusCard from "../../components/TaskStatusCard";
 import { headers } from "next/headers";
 import { STAT_CARD_CONFIG } from "@/types";
 import SearchBar from "../../components/SearchBar";
-import TaskTable from "../../components/TaskTable";
 import AddTaskButton from "../../components/AddTaskButton";
+import PaginatedTaskTable from "../../components/PaginatedTaskTable";
 
 const page = async () => {
   await redirectIfNotLoggedIn();
@@ -53,12 +53,18 @@ const page = async () => {
             />
           ))}
         </div>
-        <div className="flex flex-col gap-5 p-6 bg-linear-to-br from-blue-950/40 to-purple-950/40 rounded-lg border-white/10 border">
-          <div className="flex w-full justify-between">
+        <div className="flex flex-col gap-5 bg-linear-to-br from-blue-950/40 to-purple-950/40 rounded-lg border-white/10 border w-250 h-130">
+          <div className="flex px-6 pt-6 w-full justify-between">
             <AddTaskButton users={usersData.users} />
             <SearchBar />
           </div>
-          <TaskTable tasks={tasksData.tasks} />
+          <div className="w-full">
+            <PaginatedTaskTable
+              tasks={tasksData.tasks}
+              userId={userData.id}
+              users={usersData.users}
+            />
+          </div>
         </div>
       </div>
     </div>
