@@ -24,7 +24,7 @@ func (r *TaskRepository) CreateTask(task model.Tasks) (uuid.UUID, error) {
 }
 
 func (r *TaskRepository) GetAllTask() ([]dto.TaskWithAssignee, error) {
-	rows, err := r.DB.Query("SELECT t.id, t.title, t.status, t.due_date, u.name FROM tasks t left join users u on t.assignee=u.id")
+	rows, err := r.DB.Query("SELECT t.id, t.title, t.status, t.due_date, u.name, u.id FROM tasks t left join users u on t.assignee=u.id")
 	if err != nil {
 		return nil, err
 	}
@@ -38,6 +38,7 @@ func (r *TaskRepository) GetAllTask() ([]dto.TaskWithAssignee, error) {
 			&task.Status,
 			&task.DueDate,
 			&task.AssigneeUsername,
+			&task.AssigneeId,
 		)
 		if err != nil {
 			return nil, err

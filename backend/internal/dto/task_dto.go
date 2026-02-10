@@ -13,6 +13,7 @@ type TaskWithAssignee struct {
 	Status           string    `json:"status"`
 	DueDate          time.Time `json:"due_date"`
 	AssigneeUsername *string   `json:"assignee"`
+	AssigneeId       uuid.UUID `json:"assigneeId"`
 }
 
 type TaskStatResponse struct {
