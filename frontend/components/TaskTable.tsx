@@ -4,6 +4,7 @@ import { formatDateID } from "../composables/clientUtility";
 import StatusBadge from "./StatusBadge";
 import { capitalize } from "@mui/material";
 import { useRouter } from "next/navigation";
+import AssigneeSelect from "./AssigneeSelect";
 const TaskTable = ({ tasks, userId, users }: TaskTableProps) => {
   const route = useRouter();
 
@@ -71,7 +72,19 @@ const TaskTable = ({ tasks, userId, users }: TaskTableProps) => {
                     key={`status-${task.id}`}
                   />
                 </td>
-                <td className="py-4 text-white/80">{task.assignee ?? "-"}</td>
+                <td className="py-4 text-white /80">
+                  <AssigneeSelect
+                    key={`assignee-${task.id}`}
+                    users={users}
+                    assignee={task.assignee}
+                    assigneeId={task.assigneeId}
+                    onChange={(value) =>
+                      handleUpdateTask(task.id, {
+                        assignee: value,
+                      })
+                    }
+                  />
+                </td>
                 <td className="pr-8 py-4"></td>
               </tr>
             ))

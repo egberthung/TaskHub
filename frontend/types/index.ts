@@ -52,6 +52,7 @@ export interface Task {
   status: TaskStatus;
   due_date: string;
   assignee: string;
+  assigneeId: string;
 }
 
 export interface TaskTableProps {
@@ -78,4 +79,11 @@ export interface SearchBarProps {
 export interface StatusBadgeProps {
   status: string;
   onChange: (value: TaskStatus) => void;
+}
+
+export interface AssigneeSelectProps {
+  assignee: string;
+  assigneeId: string;
+  users: User[];
+  onChange: (value: string) => void;
 }
