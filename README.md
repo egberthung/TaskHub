@@ -52,6 +52,13 @@ task created successfully and the table is automatically refresh to get the late
 <br>
 <img width="1331" height="728" alt="image" src="https://github.com/user-attachments/assets/0b63b315-80f0-431e-8dba-43d9b70e9bc4" />
 
+user can updated status:
+<img width="1119" height="482" alt="image" src="https://github.com/user-attachments/assets/ce73278f-b3fc-49e9-a59b-ac7d19cc2491" />
 
+if assign to is none, when updated automatically turns to the user that changed it:
+<img width="964" height="67" alt="image" src="https://github.com/user-attachments/assets/323b888d-00b6-48c2-ab19-a7f32563ed17" />
+
+Pagination:
+<img width="1016" height="429" alt="image" src="https://github.com/user-attachments/assets/1d60b4a4-dec2-4ee6-832b-3bc6bd800edf" />
 
 
