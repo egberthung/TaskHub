@@ -61,4 +61,6 @@ if assign to is none, when updated automatically turns to the user that changed 
 Pagination:
 <img width="1016" height="429" alt="image" src="https://github.com/user-attachments/assets/1d60b4a4-dec2-4ee6-832b-3bc6bd800edf" />
 
+assignee select:
+<img width="1000" height="324" alt="image" src="https://github.com/user-attachments/assets/1c3a1e26-920b-4fe5-a460-5e01ed194cef" />
 
