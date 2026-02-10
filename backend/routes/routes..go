@@ -15,5 +15,6 @@ func SetUp(r *gin.Engine, authH *handler.AuthHandler, taskH *handler.TaskHandler
 	protected.GET("/user", authH.GetUserHandler)
 	protected.GET("/users", authH.GetAllUsersHandler)
 	protected.POST("/create-task", taskH.AddTaskHandler)
+	protected.POST("/update-task", taskH.UpdateTask)
 	protected.GET("/tasks", taskH.GetAllTask)
 }

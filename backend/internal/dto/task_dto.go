@@ -1,6 +1,7 @@
 package dto
 
 import (
+	"taskhub/internal/model"
 	"time"
 
 	"github.com/google/uuid"
@@ -20,4 +21,11 @@ type TaskStatResponse struct {
 	OngoingTasks   int `json:"ongoing_tasks"`
 	CompletedTasks int `json:"completed_tasks"`
 	OverdueTasks   int `json:"overdue_tasks"`
+}
+
+type UpdateTaskRequest struct {
+	Title    *string           `json:"title,omitempty"`
+	DueDate  *time.Time        `json:"due_date,omitempty"`
+	Status   *model.TaskStatus `json:"status,omitempty"`
+	Assignee *uuid.UUID        `json:"assignee,omitempty"`
 }

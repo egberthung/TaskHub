@@ -39,11 +39,11 @@ func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 }
 
 func (r *UserRepository) GetUserDetail(userId string) (*model.User, error) {
-	row := r.DB.QueryRow("select email, name from users where id=$1", userId)
+	row := r.DB.QueryRow("select id, email, name from users where id=$1", userId)
 
 	var user model.User
 
-	err := row.Scan(&user.Email, &user.Name)
+	err := row.Scan(&user.ID, &user.Email, &user.Name)
 
 	if err != nil {
 		return nil, err

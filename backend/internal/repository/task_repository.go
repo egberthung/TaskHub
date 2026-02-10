@@ -2,6 +2,8 @@ package repository
 
 import (
 	"database/sql"
+	"fmt"
+	"strings"
 	"taskhub/internal/dto"
 	"taskhub/internal/model"
 
@@ -64,4 +66,40 @@ func (r *TaskRepository) GetTaskCount() (dto.TaskStatResponse, error) {
 		return stats, err
 	}
 	return stats, nil
+}
+
+func (r *TaskRepository) UpdateTask(req dto.UpdateTaskRequest, id uuid.UUID) error {
+	query := "UPDATE tasks set "
+	args := []any{}
+	i := 1
+
+	if req.Title != nil {
+		query += fmt.Sprintf("title=$%d,", i)
+		args = append(args, *req.Title)
+		i++
+	}
+	if req.Status != nil {
+		query += fmt.Sprintf("status=$%d,", i)
+		args = append(args, *req.Status)
+		i++
+	}
+	if req.Assignee != nil {
+		query += fmt.Sprintf("assignee=$%d,", i)
+		args = append(args, *req.Assignee)
+		i++
+	}
+	if req.DueDate != nil {
+		query += fmt.Sprintf("due_date=$%d,", i)
+		args = append(args, *req.DueDate)
+		i++
+	}
+	if len(args) == 0 {
+		return fmt.Errorf("no fields to update")
+	}
+	query = strings.TrimSuffix(query, ",")
+	query += fmt.Sprintf(" WHERE id=$%d", i)
+	args = append(args, id)
+
+	_, err := r.DB.Exec(query, args...)
+	return err
 }

@@ -29,3 +29,13 @@ func (s *TaskService) GetAllTask() ([]dto.TaskWithAssignee, error) {
 func (s *TaskService) GetTaskCount() (dto.TaskStatResponse, error) {
 	return s.Repo.GetTaskCount()
 }
+
+func (s *TaskService) UpdateTask(req dto.UpdateTaskRequest, id uuid.UUID) error {
+	task := dto.UpdateTaskRequest{
+		Title:    req.Title,
+		DueDate:  req.DueDate,
+		Status:   req.Status,
+		Assignee: req.Assignee,
+	}
+	return s.Repo.UpdateTask(task, id)
+}
