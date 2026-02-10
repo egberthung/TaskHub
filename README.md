@@ -1,5 +1,5 @@
-# TaskHub
-Taskhub is a project by using next.js as frontend and golang as backend. DB using postgreSql
+# TaskHub (still under development)
+Taskhub is a project for egbert's portofolio by using next.js as frontend and golang as backend. DB using postgreSql
 
 Initial page:
 <br>
