@@ -64,3 +64,26 @@ Pagination:
 assignee select:
 <img width="1000" height="324" alt="image" src="https://github.com/user-attachments/assets/1c3a1e26-920b-4fe5-a460-5e01ed194cef" />
 
+
+Action button edit and delete:
+<img width="985" height="373" alt="image" src="https://github.com/user-attachments/assets/8d59f771-fa35-44fc-a86f-7b856cc7bf10" />
+<br>
+lets try delete on 'test 2' <br>
+<img width="1180" height="398" alt="image" src="https://github.com/user-attachments/assets/0b0e32e1-4f37-4578-b452-e0279315aa34" />
+<br>
+Task 2 is not avail anymore
+<img width="996" height="320" alt="image" src="https://github.com/user-attachments/assets/6183c979-d5ad-41e0-b11a-d252a5e8f0ae" />
+<img width="1044" height="209" alt="image" src="https://github.com/user-attachments/assets/a4e6b100-8cb8-4503-b5e8-a9cad8dbea99" />
+
+
+edit button functionality (the same task on last page):
+<img width="457" height="428" alt="image" src="https://github.com/user-attachments/assets/88167ac2-296b-474b-9db6-cd3cf593aaef" />
+<br>Change the title into task 'title changed' and assignee to 'test'
+<br><img width="976" height="103" alt="image" src="https://github.com/user-attachments/assets/9783aba7-fa8c-457a-9d67-536f2295703d" />
+
+
+
+
+
+
+
