@@ -39,3 +39,7 @@ func (s *TaskService) UpdateTask(req dto.UpdateTaskRequest, id uuid.UUID) error 
 	}
 	return s.Repo.UpdateTask(task, id)
 }
+
+func (s *TaskService) DeleteTask(id uuid.UUID) error {
+	return s.Repo.DeleteTask(id)
+}

@@ -104,3 +104,8 @@ func (r *TaskRepository) UpdateTask(req dto.UpdateTaskRequest, id uuid.UUID) err
 	_, err := r.DB.Exec(query, args...)
 	return err
 }
+
+func (r *TaskRepository) DeleteTask(id uuid.UUID) error {
+	_, err := r.DB.Exec(`DELETE FROM tasks WHERE id=$1`, id)
+	return err
+}

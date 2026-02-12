@@ -70,7 +70,7 @@ func (h *TaskHandler) UpdateTask(c *gin.Context) {
 		Id       string            `json:"id"`
 	}
 
-	if c.BindJSON(&body) != nil {
+	if err := c.BindJSON(&body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request"})
 		return
 	}
@@ -99,6 +99,31 @@ func (h *TaskHandler) UpdateTask(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Bad request"})
 		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "OK"})
+}
+
+func (h *TaskHandler) DeleteTask(c *gin.Context) {
+	var body struct {
+		Id string `json:"id"`
+	}
+
+	if err := c.BindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	taskUUID, err := uuid.Parse(body.Id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid tasks UUID"})
+		return
+	}
+
+	err = h.Service.DeleteTask(taskUUID)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Bad request"})
 	}
 
 	c.JSON(http.StatusOK, gin.H{"status": "OK"})
