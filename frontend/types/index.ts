@@ -87,3 +87,19 @@ export interface AssigneeSelectProps {
   users: User[];
   onChange: (value: string) => void;
 }
+
+export interface DeleteTaskModalProps {
+  open: boolean;
+  task: Task | undefined;
+  onClose: () => void;
+  onConfirm: (id: string) => void;
+}
+
+export interface EditTaskModalProps {
+  open: boolean;
+  task: Task | undefined;
+  onClose: () => void;
+  onConfirm: (id: string, updatedFields: Partial<Task>) => void;
+  users: User[];
+  userId: string;
+}

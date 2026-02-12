@@ -13,6 +13,7 @@ const AddTaskButton = ({ users }: AddTaskButtonProps) => {
   const [assignee, setAssignee] = useState("");
   const min = new Date();
   min.setHours(min.getHours() + 1);
+  min.setMinutes(min.getMinutes() + 2);
   const minDateTime = min
     .toLocaleString("sv-SE", { timeZone: "Asia/Jakarta" })
     .slice(0, 16);

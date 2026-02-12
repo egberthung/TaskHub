@@ -5,8 +5,29 @@ import StatusBadge from "./StatusBadge";
 import { capitalize } from "@mui/material";
 import { useRouter } from "next/navigation";
 import AssigneeSelect from "./AssigneeSelect";
+import { Icon } from "@iconify/react";
+import { useState } from "react";
+import DeleteTaskModal from "./DeleteTaskModal";
+import EditTaskModal from "./EditTaskModal";
 const TaskTable = ({ tasks, userId, users }: TaskTableProps) => {
   const route = useRouter();
+  const [deleteTaskId, setDeleteTaskId] = useState<string | null>(null);
+  const [updateTaskId, setUpdateTaskId] = useState<string | null>(null);
+
+  const handleDeleteData = async (id: string) => {
+    await fetch(`http://localhost:8081/api/taskhub/delete-task`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+      credentials: "include",
+    });
+    route.refresh();
+    setDeleteTaskId(null);
+  };
 
   const handleUpdateTask = async (id: string, updatedFields: Partial<Task>) => {
     const statusOnly = Object.keys(updatedFields)[0] === "status";
@@ -25,6 +46,7 @@ const TaskTable = ({ tasks, userId, users }: TaskTableProps) => {
       }),
       credentials: "include",
     });
+    setUpdateTaskId(null);
     route.refresh();
   };
 
@@ -85,11 +107,40 @@ const TaskTable = ({ tasks, userId, users }: TaskTableProps) => {
                     }
                   />
                 </td>
-                <td className="pr-8 py-4"></td>
+                <td className="pr-8 py-4 flex gap-2">
+                  <Icon
+                    icon="material-symbols-light:edit-sharp"
+                    className="bg-blue-800 text-2xl text-gray-200 rounded-full w-8 hover:bg-gray-200 hover:text-blue-800"
+                    onClick={() => setUpdateTaskId(task.id)}
+                  />
+                  <Icon
+                    icon="material-symbols:delete-outline-sharp"
+                    className="bg-red-800 text-2xl text-gray-200 rounded-full w-8 hover:bg-gray-200 hover:text-red-800"
+                    onClick={() => setDeleteTaskId(task.id)}
+                  />
+                </td>
               </tr>
             ))
           )}
         </tbody>
+        <DeleteTaskModal
+          key={`delete-modal-${deleteTaskId}`}
+          onClose={() => setDeleteTaskId(null)}
+          open={deleteTaskId !== null}
+          task={tasks?.find((task) => task.id === deleteTaskId)}
+          onConfirm={handleDeleteData}
+        />
+        <EditTaskModal
+          key={`update-modal-${updateTaskId}`}
+          onClose={() => setUpdateTaskId(null)}
+          onConfirm={(id: string, updatedFields: Partial<Task>) =>
+            handleUpdateTask(id, updatedFields)
+          }
+          open={updateTaskId !== null}
+          users={users}
+          userId={userId}
+          task={tasks?.find((task) => task.id === updateTaskId)}
+        />
       </table>
     </div>
   );
