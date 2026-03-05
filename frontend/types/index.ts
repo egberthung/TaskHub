@@ -72,8 +72,15 @@ export interface AddTaskButtonProps {
 
 export interface SearchBarProps {
   placeholder?: string;
+  tasks: Task[];
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface ClientDashboardProps {
+  tasks: Task[];
+  userId: string;
+  users: User[];
 }
 
 export interface StatusBadgeProps {

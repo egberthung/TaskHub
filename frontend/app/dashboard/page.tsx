@@ -2,9 +2,7 @@ import { redirectIfNotLoggedIn } from "@/composables/utility";
 import TaskStatusCard from "../../components/TaskStatusCard";
 import { headers } from "next/headers";
 import { STAT_CARD_CONFIG } from "@/types";
-import SearchBar from "../../components/SearchBar";
-import AddTaskButton from "../../components/AddTaskButton";
-import PaginatedTaskTable from "../../components/PaginatedTaskTable";
+import ClientDashboard from "../../components/ClientDashboard";
 
 const page = async () => {
   await redirectIfNotLoggedIn();
@@ -53,17 +51,16 @@ const page = async () => {
             />
           ))}
         </div>
-        <div className="flex flex-col gap-5 bg-linear-to-br from-blue-950/40 to-purple-950/40 rounded-lg border-white/10 border w-250 h-130">
-          <div className="flex px-6 pt-6 w-full justify-between">
-            <AddTaskButton users={usersData.users} />
-            <SearchBar />
-          </div>
-          <div className="w-full">
-            <PaginatedTaskTable
+        <div className="flex gap-3">
+          <div className="flex-2 flex-col gap-5 bg-linear-to-br from-blue-950/40 to-purple-950/40 rounded-lg border-white/10 border w-250 h-130">
+            <ClientDashboard
               tasks={tasksData.tasks}
               userId={userData.id}
               users={usersData.users}
             />
+          </div>
+          <div className="flex-1 p-5 bg-linear-to-br from-blue-950/40 to-purple-950/40 rounded-lg border-white/10 border w-250 h-130">
+            <h1 className="font-medium text-white text-2xl">Activity Log</h1>
           </div>
         </div>
       </div>

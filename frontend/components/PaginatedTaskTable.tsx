@@ -8,7 +8,7 @@ const PaginatedTaskTable = ({ tasks, userId, users }: TaskTableProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
-  const totalPages = Math.ceil((tasks?.length || 0) / pageSize);
+  const totalPages = Math.ceil((tasks?.length || 0) / pageSize) || 1;
   const paginatedTasks =
     tasks?.slice((currentPage - 1) * pageSize, currentPage * pageSize) || [];
 
@@ -27,7 +27,7 @@ const PaginatedTaskTable = ({ tasks, userId, users }: TaskTableProps) => {
         </span>
         <CustomButton
           title="Next"
-          disabled={currentPage === totalPages}
+          disabled={currentPage === totalPages || currentPage> totalPages}
           onClick={() => setCurrentPage(currentPage + 1)}
           className={`bg-cyan-700 rounded-md text-white py-2 px-6 font-medium ${currentPage === totalPages ? "" : "hover:bg-white"} w-auto select-all`}
         />

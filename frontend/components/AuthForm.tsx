@@ -63,6 +63,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
     }
     localStorage.setItem("token", data.token);
     router.push("/dashboard");
+    router.refresh()
   };
 
   const handleRegister = async () => {
@@ -86,6 +87,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
     }
     localStorage.setItem("token", data.token);
     router.push("/dashboard");
+    router.refresh()
   };
 
   return (
