@@ -10,6 +10,7 @@ import (
 func SetUp(r *gin.Engine, authH *handler.AuthHandler, taskH *handler.TaskHandler) {
 	r.POST("/register", authH.Register)
 	r.POST("/login", authH.Login)
+	r.POST("/logout", authH.Logout)
 	protected := r.Group("/api/taskhub")
 	protected.Use(middleware.AuthMiddleware())
 	protected.GET("/user", authH.GetUserHandler)

@@ -71,6 +71,19 @@ func (h *AuthHandler) GetUserHandler(c *gin.Context) {
 	})
 }
 
+func (h *AuthHandler) Logout(c *gin.Context){
+	c.SetCookie(
+		"user-login",
+		"",
+		-1,
+		"/",
+		"",
+		true,
+		true,
+	)
+	c.JSON(200, gin.H{"message": "Logout successfully"})
+}
+
 func (h *AuthHandler) GetAllUsersHandler(c *gin.Context) {
 	users, err := h.Service.GetAllUsers()
 	if err != nil {
